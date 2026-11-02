@@ -4,128 +4,233 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#101323">
-<title>SYN Grid Collage</title>
+<meta name="theme-color" content="#090d19">
+<title>SYN Grid Collage V2</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#101323;color:#f7f7fb;font-family:Arial,sans-serif}
-header{padding:22px 18px;background:#191d32;border-bottom:1px solid #30354e}
-.brand{font-size:24px;font-weight:800;letter-spacing:1px}
-.brand span{color:#a78bfa}
-header p{color:#b7bad0;font-size:13px;margin:7px 0 0}
-main{max-width:720px;margin:auto;padding:18px}
-.panel{background:#1a1f35;border:1px solid #303650;border-radius:18px;padding:16px;margin-bottom:16px}
-h2{font-size:17px;margin:0 0 14px}
-button,.upload{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:11px;padding:12px 15px;font-weight:700;cursor:pointer;font-size:14px}
-.primary{background:#a78bfa;color:#171326}
-.secondary,.upload{background:#303650;color:white}
-input,select{max-width:100%;padding:10px;border-radius:9px;border:1px solid #424965;background:#101323;color:white}
-.controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0}
-#preview{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;background:#303650;padding:5px;border-radius:12px;overflow:hidden}
-#preview img{width:100%;height:100%;min-height:100px;max-height:280px;object-fit:cover;display:block}
-#preview:empty{display:flex;min-height:180px;align-items:center;justify-content:center;color:#aeb3ca;text-align:center;padding:24px}
-.hint{font-size:12px;color:#b7bad0;line-height:1.6}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+body{margin:0;background:#090d19;color:#f5f7ff;font-family:Arial,sans-serif}
+header{padding:22px 17px;background:#11182a;border-bottom:1px solid #27334c}
+.brand{font-size:23px;font-weight:900;letter-spacing:1px}
+.brand span{color:#8b9cff}
+header p{color:#aab5cc;font-size:12px;margin:7px 0 0}
+main{max-width:760px;margin:auto;padding:15px}
+.panel{background:#121b2e;border:1px solid #293751;border-radius:16px;padding:15px;margin-bottom:14px}
+h2{font-size:16px;margin:0 0 13px}
+label{font-size:12px;color:#b9c5dc}
+button,.upload{border:0;border-radius:10px;padding:12px 14px;font-weight:bold;font-size:13px;cursor:pointer}
+.primary{background:#8297ff;color:#081020}
+.secondary,.upload{background:#293751;color:white}
+.controls{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:12px 0}
+select,input{max-width:100%;padding:10px;border-radius:9px;border:1px solid #394966;background:#0b1323;color:white}
+input[type=color]{width:48px;height:39px;padding:3px}
+input[type=range]{width:110px;padding:0}
+input[type=file]{display:none}
+#preview{width:100%;max-width:480px;margin:15px auto;background:#293751;display:grid;gap:5px;padding:5px;border-radius:10px;overflow:hidden}
+#preview img{width:100%;height:100%;min-width:0;display:block}
+#preview.empty{display:flex;min-height:180px;align-items:center;justify-content:center;text-align:center;color:#aab5cc;padding:25px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
 .actions button{flex:1}
-footer{text-align:center;padding:18px;color:#9298b5;font-size:12px}
+.hint{font-size:12px;color:#9eabc3;line-height:1.6}
+#photoList{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.photoItem{background:#202d45;border-radius:9px;padding:5px;min-width:0}
+.photoItem img{width:100%;height:75px;object-fit:cover;border-radius:6px}
+.photoItem button{width:100%;padding:7px;margin-top:5px;background:#713b50;color:white;font-size:11px}
+footer{text-align:center;padding:20px;color:#8190aa;font-size:11px}
+button:disabled{opacity:.5}
 </style>
 </head>
 <body>
 <header>
-  <div class="brand"><span>SYN</span> GRID COLLAGE</div>
-  <p>Satukan foto, ciptakan cerita.</p>
+ <div class="brand"><span>SYN</span> GRID COLLAGE</div>
+ <p>Photo Collage Editor · V2</p>
 </header>
 <main>
-  <section class="panel">
-    <h2>01 · Pilih foto</h2>
-    <label class="upload" for="photos">＋ Pilih beberapa foto</label>
-    <input id="photos" type="file" accept="image/*" multiple hidden>
-    <p class="hint" id="count">Belum ada foto dipilih.</p>
-  </section>
-  <section class="panel">
-    <h2>02 · Atur kolase</h2>
-    <div class="controls">
-      <label for="columns">Kolom</label>
-      <select id="columns">
-        <option value="1">1 kolom</option>
-        <option value="2" selected>2 kolom</option>
-        <option value="3">3 kolom</option>
-        <option value="4">4 kolom</option>
-      </select>
-      <label for="gap">Jarak</label>
-      <input id="gap" type="range" min="0" max="20" value="5">
-      <span id="gapValue">5 px</span>
-    </div>
-    <div class="controls">
-      <label for="bg">Warna bingkai</label>
-      <input id="bg" type="color" value="#303650">
-    </div>
-    <div id="preview">Foto kolase kamu akan muncul di sini.</div>
-    <div class="actions">
-      <button class="secondary" id="clear">Hapus foto</button>
-      <button class="primary" id="save">Simpan kolase</button>
-    </div>
-    <p class="hint">Pilih foto, atur kolom dan jarak, lalu simpan hasilnya sebagai gambar.</p>
-  </section>
+ <section class="panel">
+  <h2>01 · Pilih foto</h2>
+  <label class="upload" for="photos">＋ Tambah beberapa foto</label>
+  <input id="photos" type="file" accept="image/*" multiple>
+  <p class="hint" id="count">Belum ada foto dipilih.</p>
+  <div id="photoList"></div>
+ </section>
+
+ <section class="panel">
+  <h2>02 · Atur kolase</h2>
+  <div class="controls">
+   <label for="ratio">Rasio</label>
+   <select id="ratio">
+    <option value="4:5" selected>4:5 · Portrait</option>
+    <option value="1:1">1:1 · Kotak</option>
+    <option value="9:16">9:16 · Story</option>
+    <option value="16:9">16:9 · Landscape</option>
+    <option value="3:4">3:4 · Portrait</option>
+   </select>
+  </div>
+  <div class="controls">
+   <label for="columns">Kolom</label>
+   <select id="columns">
+    <option value="1">1</option>
+    <option value="2" selected>2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+   </select>
+   <label for="fit">Tampilan foto</label>
+   <select id="fit">
+    <option value="cover">Cover · Isi penuh</option>
+    <option value="contain">Fit · Foto utuh</option>
+   </select>
+  </div>
+  <div class="controls">
+   <label for="gap">Jarak</label>
+   <input id="gap" type="range" min="0" max="30" value="6">
+   <span id="gapValue">6 px</span>
+  </div>
+  <div class="controls">
+   <label for="bg">Warna latar</label>
+   <input id="bg" type="color" value="#293751">
+  </div>
+  <p class="hint">Pratinjau mengikuti pengaturan kolase. Hasil ekspor dirender ulang dari foto asli agar tetap tajam.</p>
+  <div id="preview" class="empty">Kolase kamu akan muncul di sini.</div>
+ </section>
+
+ <section class="panel">
+  <h2>03 · Simpan hasil HD</h2>
+  <div class="controls">
+   <label for="quality">Resolusi</label>
+   <select id="quality">
+    <option value="1080">1080 px</option>
+    <option value="2160" selected>2160 px · HD</option>
+   </select>
+   <label for="format">Format</label>
+   <select id="format">
+    <option value="image/png">PNG</option>
+    <option value="image/jpeg">JPG</option>
+   </select>
+  </div>
+  <div class="actions">
+   <button class="secondary" id="clear">Hapus semua foto</button>
+   <button class="primary" id="save">Simpan kolase HD</button>
+  </div>
+  <p class="hint" id="status">Pilih foto untuk mulai membuat kolase.</p>
+ </section>
 </main>
-<footer>SYN Grid Collage · Versi awal</footer>
+<footer>SYN GRID COLLAGE V2 · Built for creators</footer>
+
 <script>
-const picker=document.getElementById('photos');
-const preview=document.getElementById('preview');
-const columns=document.getElementById('columns');
-const gap=document.getElementById('gap');
-const bg=document.getElementById('bg');
-const count=document.getElementById('count');
+const $=id=>document.getElementById(id);
+const picker=$('photos'),preview=$('preview'),list=$('photoList');
 let photos=[];
-picker.addEventListener('change',()=>{
-  photos=Array.from(picker.files).filter(f=>f.type.startsWith('image/'));
-  render();
-});
-function render(){
-  preview.innerHTML='';
-  preview.style.gridTemplateColumns=`repeat(${columns.value},minmax(0,1fr))`;
-  preview.style.gap=gap.value+'px';
-  preview.style.background=bg.value;
-  preview.style.padding=gap.value+'px';
-  count.textContent=photos.length?`${photos.length} foto dipilih.`:'Belum ada foto dipilih.';
-  if(!photos.length){preview.textContent='Foto kolase kamu akan muncul di sini.';return}
-  photos.forEach(file=>{
-    const img=document.createElement('img');
-    img.alt='Foto kolase';
-    img.src=URL.createObjectURL(file);
-    preview.appendChild(img);
-  });
+
+function dimensions(){
+ const [a,b]=$('ratio').value.split(':').map(Number);
+ const w=900;
+ return {w,h:Math.round(w*b/a)};
 }
-columns.addEventListener('change',render);
-gap.addEventListener('input',()=>{document.getElementById('gapValue').textContent=gap.value+' px';render()});
-bg.addEventListener('input',render);
-document.getElementById('clear').addEventListener('click',()=>{
-  photos=[];picker.value='';render();
+function update(){
+ const d=dimensions();
+ preview.classList.toggle('empty',photos.length===0);
+ preview.innerHTML='';
+ preview.style.aspectRatio=$('ratio').value.replace(':','/');
+ preview.style.gridTemplateColumns=`repeat($('columns').value,1fr)`;
+ preview.style.gap=$('gap').value+'px';
+ preview.style.padding=$('gap').value+'px';
+ preview.style.background=$('bg').value;
+ $('gapValue').textContent=$('gap').value+' px';
+ $('count').textContent=photos.length+' foto dipilih.';
+ if(!photos.length){
+  preview.textContent='Kolase kamu akan muncul di sini.';
+ }else{
+  photos.forEach(p=>{
+   const img=document.createElement('img');
+   img.src=p.url;img.alt='Foto kolase';
+   img.style.objectFit=$('fit').value;
+   preview.appendChild(img);
+  });
+ }
+ list.innerHTML='';
+ photos.forEach((p,i)=>{
+  const item=document.createElement('div');
+  item.className='photoItem';
+  const img=document.createElement('img');
+  img.src=p.url;
+  const btn=document.createElement('button');
+  btn.textContent='Hapus';
+  btn.onclick=()=>{URL.revokeObjectURL(p.url);photos.splice(i,1);update()};
+  item.append(img,btn);list.appendChild(item);
+ });
+}
+picker.addEventListener('change',()=>{
+ const incoming=Array.from(picker.files).filter(f=>f.type.startsWith('image/'));
+ incoming.forEach(f=>photos.push({file:f,url:URL.createObjectURL(f)}));
+ picker.value='';
+ update();
 });
-document.getElementById('save').addEventListener('click',async()=>{
-  if(!photos.length){alert('Pilih foto terlebih dahulu.');return}
-  const urls=photos.map(f=>URL.createObjectURL(f));
-  try{
-    const imgs=await Promise.all(urls.map(src=>new Promise((resolve,reject)=>{
-      const im=new Image();im.onload=()=>resolve(im);im.onerror=reject;im.src=src;
-    })));
-    const cols=Number(columns.value),g=Number(gap.value),cellW=900/cols;
-    const rows=Math.ceil(imgs.length/cols),cellH=cellW;
-    const canvas=document.createElement('canvas');
-    canvas.width=900;canvas.height=rows*cellH+g;
-    const ctx=canvas.getContext('2d');
-    ctx.fillStyle=bg.value;ctx.fillRect(0,0,canvas.width,canvas.height);
-    imgs.forEach((im,i)=>{
-      const x=g+(i%cols)*(cellW),y=g+Math.floor(i/cols)*(cellH);
-      const scale=Math.max(cellW/im.width,cellH/im.height);
-      const sw=cellW/scale,sh=cellH/scale;
-      ctx.drawImage(im,(im.width-sw)/2,(im.height-sh)/2,sw,sh,x,y,cellW-g,cellH-g);
-    });
-    const a=document.createElement('a');a.download='syn-grid-collage.jpg';a.href=canvas.toDataURL('image/jpeg',0.92);a.click();
-  }catch(e){alert('Gagal menyimpan. Coba gunakan foto lain.')}
-  finally{urls.forEach(URL.revokeObjectURL)}
+['ratio','columns','fit','gap','bg'].forEach(id=>{
+ $(id).addEventListener('input',update);
+ $(id).addEventListener('change',update);
 });
-render();
+$('clear').onclick=()=>{
+ photos.forEach(p=>URL.revokeObjectURL(p.url));
+ photos=[];update();$('status').textContent='Semua foto sudah dihapus.';
+};
+
+function loadImage(file){
+ return new Promise((resolve,reject)=>{
+  const img=new Image();
+  const url=URL.createObjectURL(file);
+  img.onload=()=>{URL.revokeObjectURL(url);resolve(img)};
+  img.onerror=()=>{URL.revokeObjectURL(url);reject()};
+  img.src=url;
+ });
+}
+$('save').onclick=async()=>{
+ if(!photos.length){alert('Pilih foto terlebih dahulu.');return}
+ const btn=$('save');
+ btn.disabled=true;
+ $('status').textContent='Sedang membuat gambar HD...';
+ try{
+  const imgs=await Promise.all(photos.map(p=>loadImage(p.file)));
+  const {w:baseW,h:baseH}=dimensions();
+  const targetW=Number($('quality').value);
+  const scale=targetW/baseW;
+  const W=targetW,H=Math.round(baseH*scale);
+  const g=Number($('gap').value)*scale;
+  const cols=Number($('columns').value);
+  const cellW=(W-g*(cols+1))/cols;
+  const rows=Math.ceil(imgs.length/cols);
+  const cellH=(H-g*(rows+1))/rows;
+  const canvas=document.createElement('canvas');
+  canvas.width=W;canvas.height=H;
+  const ctx=canvas.getContext('2d');
+  if(!ctx)throw Error('Canvas tidak tersedia');
+  ctx.fillStyle=$('bg').value;
+  ctx.fillRect(0,0,W,H);
+  imgs.forEach((im,i)=>{
+   const x=g+(i%cols)*(cellW+g);
+   const y=g+Math.floor(i/cols)*(cellH+g);
+   const fit=$('fit').value;
+   const s=fit==='cover'?Math.max(cellW/im.width,cellH/im.height):Math.min(cellW/im.width,cellH/im.height);
+   const dw=im.width*s,dh=im.height*s;
+   ctx.save();
+   ctx.beginPath();ctx.rect(x,y,cellW,cellH);ctx.clip();
+   ctx.drawImage(im,x+(cellW-dw)/2,y+(cellH-dh)/2,dw,dh);
+   ctx.restore();
+  });
+  const type=$('format').value;
+  const blob=await new Promise(resolve=>canvas.toBlob(resolve,type,type==='image/jpeg'?0.95:undefined));
+  if(!blob)throw Error('Gagal membuat gambar');
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download='SYN-Grid-Collage.'+(type==='image/png'?'png':'jpg');
+  a.click();
+  setTimeout(()=>URL.revokeObjectURL(url),3000);
+  $('status').textContent=`Berhasil! Ukuran gambar ${W} × ${H} piksel.`;
+ }catch(e){
+  $('status').textContent='Gagal menyimpan. Coba kurangi jumlah foto atau gunakan resolusi 1080 px.';
+ }finally{
+  btn.disabled=false;
+ }
+};
+update();
 </script>
 </body>
 </html>
